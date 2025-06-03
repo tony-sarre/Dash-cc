@@ -66,7 +66,8 @@ with col1:
     st.metric("Total Commandes", f"{filtered_df['total_commandes_journalier'].sum():,}")
 
 with col2:
-    st.metric("Total Appels", f"{filtered_df['total_interaction_appel_par_agent'].sum():,}")
+    # Total Interactions par agent
+    st.metric("Total Interactions", f"{filtered_df['total_interactions_par_agent'].sum():,}")
 
 with col3:
     st.metric("Réclamations", f"{filtered_df['total_reclamation_par_agent'].sum():,}")
@@ -78,57 +79,39 @@ with col4:
 col5, col6, col7, col8 = st.columns(4)
 
 with col5:
-    # Notation Livreur (moyenne si la colonne existe)
-    if 'notation_livreur' in filtered_df.columns:
-        notation_moyenne = filtered_df['notation_livreur'].mean()
-        st.metric("Notation Livreur", f"{notation_moyenne:.1f}/5" if not pd.isna(notation_moyenne) else "N/A")
-    else:
-        st.metric("Notation Livreur", "N/A")
+    # Notation moyenne par agent
+    notation = filtered_df['total_notation_par_agent'].sum()
+    st.metric("Notation", f"{notation:.1f}" if not pd.isna(notation) else "0.0")
 
 with col6:
-    # Moyenne SKU par commande
-    if 'total_sku' in filtered_df.columns and filtered_df['total_commandes_journalier'].sum() > 0:
-        moy_sku = filtered_df['total_sku'].sum() / filtered_df['total_commandes_journalier'].sum()
-        st.metric("Moy. SKU/Commande", f"{moy_sku:.1f}")
-    else:
-        st.metric("Moy. SKU/Commande", "N/A")
+    # Moyenne SKU par commande (déjà calculée dans les données)
+    moy_sku = filtered_df['moyenne_sku_par_commande'].mean()
+    st.metric("Moy. SKU/Commande", f"{moy_sku:.1f}" if not pd.isna(moy_sku) else "0.0")
 
 with col7:
-    # Total SKU
-    if 'total_sku' in filtered_df.columns:
-        st.metric("Total SKU", f"{filtered_df['total_sku'].sum():,}")
-    else:
-        st.metric("Total SKU", "N/A")
+    # Total SKU par agent
+    st.metric("Total SKU", f"{filtered_df['total_sku_par_agent'].sum():,}")
 
 with col8:
     # Suivi Réclamation
-    if 'suivi_reclamation' in filtered_df.columns:
-        st.metric("Suivi Réclamation", f"{filtered_df['suivi_reclamation'].sum():,}")
-    else:
-        st.metric("Suivi Réclamation", "N/A")
+    st.metric("Suivi Réclamation", f"{filtered_df['total_suivi_reclamation_par_agent'].sum():,}")
 
 # KPIs supplémentaires - Ligne 3
-col9, col10, col11, col12 = st.columns(4)
+col9, col10, col11 = st.columns(3)
+
 
 with col9:
-    # Réclamation Agent (si différent de total_reclamation_par_agent)
-    if 'reclamation_agent' in filtered_df.columns:
-        st.metric("Réclamation Agent", f"{filtered_df['reclamation_agent'].sum():,}")
-    else:
-        st.metric("Réclamation Agent", f"{filtered_df['total_reclamation_par_agent'].sum():,}")
-
-with col10:
     # Agents Actifs
     nb_agents = len(filtered_df['agent'].unique())
     st.metric("Agents Actifs", f"{nb_agents}")
 
-with col11:
+with col10:
     # Zones Actives
     nb_zones = len(filtered_df['zone'].unique())
     st.metric("Zones Actives", f"{nb_zones}")
 
-with col12:
-    # Moyenne Commandes/Agent
+with col11:
+    # Moyenne Commandes par Agent
     if nb_agents > 0:
         moy_cmd_agent = filtered_df['total_commandes_journalier'].sum() / nb_agents
         st.metric("Moy. Cmd/Agent", f"{moy_cmd_agent:.0f}")
@@ -150,7 +133,10 @@ scores = filtered_df.groupby("agent").agg({
     "total_commandes_journalier": "sum",
     "total_interaction_appel_par_agent": "sum",
     "total_reclamation_par_agent": "sum",
-    "total_suivi_livraison_impossible_par_agent": "sum"
+    "total_suivi_livraison_impossible_par_agent": "sum",
+    "total_notation_par_agent": "mean",
+    "total_sku_par_agent": "sum",
+    "total_suivi_reclamation_par_agent": "sum"
 }).reset_index()
 
 # Calcul scores
@@ -159,19 +145,21 @@ scores["livr_score"] = 1 / (1 + scores["total_suivi_livraison_impossible_par_age
 
 # Normalisation
 scaler = MinMaxScaler()
-cols_to_scale = ["total_commandes_journalier", "total_interaction_appel_par_agent", "reclam_score", "livr_score"]
+cols_to_scale = ["total_commandes_journalier", "total_interaction_appel_par_agent", "reclam_score", "livr_score",
+                 "total_notation_par_agent"]
 scores_norm = pd.DataFrame(
     scaler.fit_transform(scores[cols_to_scale]),
-    columns=["cmd", "appels", "reclam", "livr"],
+    columns=["cmd", "interaction", "reclam", "livr", "notation"],
     index=scores["agent"]
 )
 
-# Note finale
+# Note finale avec notation incluse
 scores_norm["note"] = (
-                              scores_norm["cmd"] * 0.40 +
-                              scores_norm["appels"] * 0.25 +
+                              scores_norm["cmd"] * 0.30 +
+                              scores_norm["interaction"] * 0.20 +
                               scores_norm["reclam"] * 0.20 +
-                              scores_norm["livr"] * 0.15
+                              scores_norm["livr"] * 0.15 +
+                              scores_norm["notation"] * 0.15
                       ) * 100
 
 scores_final = scores_norm[["note"]].round(1).sort_values("note", ascending=False)
