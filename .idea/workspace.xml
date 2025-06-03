@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ef533bd-53ce-4059-a1e0-2f32d9c6ce85" name="Changes" comment="mon-dash-call-center">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dash-cc.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash-cc.py" afterDir="false" />
-    </list>
+    <list default="true" id="8ef533bd-53ce-4059-a1e0-2f32d9c6ce85" name="Changes" comment="mon-dash-call-center" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
