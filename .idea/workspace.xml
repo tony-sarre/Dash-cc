@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8ef533bd-53ce-4059-a1e0-2f32d9c6ce85" name="Changes" comment="mon-dash-call-center" />
+    <list default="true" id="8ef533bd-53ce-4059-a1e0-2f32d9c6ce85" name="Changes" comment="mon-dash-call-center">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dash-cc.py" beforeDir="false" afterPath="$PROJECT_DIR$/dash-cc.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +21,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
@@ -73,7 +77,79 @@
       <option name="project" value="LOCAL" />
       <updated>1748948172840</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1748958745074</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1748958745074</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750165829622</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1750165829622</updated>
+    </task>
+    <task id="LOCAL-00005" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750165963718</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1750165963721</updated>
+    </task>
+    <task id="LOCAL-00006" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750165982262</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1750165982262</updated>
+    </task>
+    <task id="LOCAL-00007" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750166078268</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1750166078268</updated>
+    </task>
+    <task id="LOCAL-00008" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750166139540</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1750166139540</updated>
+    </task>
+    <task id="LOCAL-00009" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750166149588</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1750166149588</updated>
+    </task>
+    <task id="LOCAL-00010" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750166170114</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1750166170114</updated>
+    </task>
+    <task id="LOCAL-00011" summary="mon-dash-call-center">
+      <option name="closed" value="true" />
+      <created>1750166239253</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1750166239253</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
